@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Phone, MapPin, Facebook, Clock, Mail } from 'lucide-react';
+import { Phone, MapPin, Facebook, Clock, Mail, Youtube } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 
@@ -224,8 +224,8 @@ const Home = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="fade-in-up">
                 <img 
-                  src="https://customer-assets.emergentagent.com/job_provence-dining/artifacts/6fnel6hl_69010301_888512718189279_4142079074581348352_n.jpg" 
-                  alt="Assiette Melon et Jambon de Parme - Spécialité Provençale" 
+                  src="https://customer-assets.emergentagent.com/job_provence-dining/artifacts/pwdu37w4_qzmlkjdlkqzjdklmjqz.webp" 
+                  alt="Entrecôte grillée, frites maison et salade fraîche - Spécialité Bistrot Arlésien" 
                   className="h-80 w-full object-cover rounded-lg shadow-lg"
                 />
               </div>
@@ -438,7 +438,7 @@ const Home = () => {
             </div>
 
             {/* Contact Methods */}
-            <div className="grid md:grid-cols-3 gap-8 mb-12 fade-in-up">
+            <div className="grid md:grid-cols-4 gap-8 mb-12 fade-in-up">
               <Card className="text-center p-6 shadow-md">
                 <CardContent className="pt-6">
                   <Phone className="w-12 h-12 mx-auto mb-4 text-terracotta" />
@@ -460,6 +460,14 @@ const Home = () => {
                   <Facebook className="w-12 h-12 mx-auto mb-4 text-terracotta" />
                   <h4 className="font-serif text-xl mb-2 text-terracotta">Sur Facebook</h4>
                   <p>Suivez notre page<br />Bistrot Arlésien</p>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center p-6 shadow-md">
+                <CardContent className="pt-6">
+                  <Youtube className="w-12 h-12 mx-auto mb-4 text-red-600" />
+                  <h4 className="font-serif text-xl mb-2 text-red-600">Sur YouTube</h4>
+                  <p>Découvrez nos vidéos<br />Bistrot Arlésien</p>
                 </CardContent>
               </Card>
             </div>
@@ -488,10 +496,16 @@ const Home = () => {
                   Appeler - 04 90 99 51 93
                 </Button>
               </a>
-              <a href="https://www.facebook.com/bistrotarlesien" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.facebook.com/profile.php?id=100063914435983" target="_blank" rel="noopener noreferrer">
                 <Button className="bg-terracotta/80 text-white px-8 py-6 text-lg hover:bg-terracotta transition-all font-semibold w-full md:w-auto">
                   <Facebook className="w-5 h-5 mr-2" />
-                  Facebook - Bistrot Arlésien
+                  Facebook
+                </Button>
+              </a>
+              <a href="https://www.youtube.com/@bistrotarlesien" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-red-600 text-white px-8 py-6 text-lg hover:bg-red-700 transition-all font-semibold w-full md:w-auto">
+                  <Youtube className="w-5 h-5 mr-2" />
+                  YouTube
                 </Button>
               </a>
             </div>

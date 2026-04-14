@@ -65,11 +65,12 @@ Create a one-page landing page for "Bistrot Arlésien", a Provençal bistro rest
 - Implemented smooth scroll animations with cubic-bezier easing
 - Used Lucide React icons (no emoji characters)
 
-**Corrections Applied:**
-- ✅ Facebook link updated to https://www.facebook.com/bistrotarlesien
-- ✅ Replaced AI-generated images with user-provided photos
-- ✅ Completely redesigned "La Carte" section with full-width elegant menu style
-- ✅ Improved animation smoothness (cubic-bezier transitions)
+**Corrections Finales Appliquées (MEGA-PROMPT):**
+- ✅ Lien Facebook restauré à https://www.facebook.com/profile.php?id=100063914435983 (target="_blank")
+- ✅ YouTube intégré: carte contact + bouton CTA rouge
+- ✅ Image Identity remplacée par l'entrecôte grillée (photo spectaculaire haute qualité)
+- ✅ 4 cartes de contact au lieu de 3 (Phone, Localisation, Facebook, YouTube)
+- ✅ 3 boutons CTA alignés en bas: Appeler | Facebook | YouTube
 
 ## Image Assets Used
 **User-Provided Images:**
