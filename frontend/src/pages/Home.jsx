@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from 'react';
-import { Phone, MapPin, Facebook, Clock, UtensilsCrossed, ChefHat, Pizza } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Phone, MapPin, Facebook, Clock, UtensilsCrossed, ChefHat, Pizza, Menu, X } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 
 const Home = () => {
   const observerRef = useRef(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     // Scroll animations
@@ -157,22 +158,91 @@ const Home = () => {
     <div className="bg-cream text-chocolate font-sans">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-cream/95 backdrop-blur-sm z-50 shadow-sm">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="font-serif text-2xl font-bold text-terracotta">Bistrot Arlésien</h1>
-          <div className="hidden md:flex space-x-6">
-            <a href="#accueil" className="hover:text-terracotta transition-colors">Accueil</a>
-            <a href="#identite" className="hover:text-terracotta transition-colors">Notre Histoire</a>
-            <a href="#menus" className="hover:text-terracotta transition-colors">Menus</a>
-            <a href="#carte" className="hover:text-terracotta transition-colors">La Carte</a>
-            <a href="#galerie" className="hover:text-terracotta transition-colors">Galerie</a>
-            <a href="#contact" className="hover:text-terracotta transition-colors">Contact</a>
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex justify-between items-center">
+            <h1 className="font-serif text-xl md:text-2xl font-bold text-terracotta">Bistrot Arlésien</h1>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex space-x-6">
+              <a href="#accueil" className="hover:text-terracotta transition-colors">Accueil</a>
+              <a href="#identite" className="hover:text-terracotta transition-colors">Notre Histoire</a>
+              <a href="#menus" className="hover:text-terracotta transition-colors">Menus</a>
+              <a href="#carte" className="hover:text-terracotta transition-colors">La Carte</a>
+              <a href="#galerie" className="hover:text-terracotta transition-colors">Galerie</a>
+              <a href="#contact" className="hover:text-terracotta transition-colors">Contact</a>
+            </div>
+            
+            {/* Desktop Call Button */}
+            <a href="tel:0490995193" className="hidden md:block">
+              <Button className="bg-terracotta text-white hover:bg-terracotta/90">
+                <Phone className="w-4 h-4 mr-2" />
+                Appeler
+              </Button>
+            </a>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden p-2 text-terracotta"
+              aria-label="Menu"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
-          <a href="tel:0490995193">
-            <Button className="bg-terracotta text-white hover:bg-terracotta/90">
-              <Phone className="w-4 h-4 mr-2" />
-              Appeler
-            </Button>
-          </a>
+
+          {/* Mobile Navigation Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden mt-4 pb-4 space-y-3 animate-in slide-in-from-top">
+              <a 
+                href="#accueil" 
+                className="block py-2 px-4 hover:bg-terracotta/10 rounded transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Accueil
+              </a>
+              <a 
+                href="#identite" 
+                className="block py-2 px-4 hover:bg-terracotta/10 rounded transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Notre Histoire
+              </a>
+              <a 
+                href="#menus" 
+                className="block py-2 px-4 hover:bg-terracotta/10 rounded transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Menus
+              </a>
+              <a 
+                href="#carte" 
+                className="block py-2 px-4 hover:bg-terracotta/10 rounded transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                La Carte
+              </a>
+              <a 
+                href="#galerie" 
+                className="block py-2 px-4 hover:bg-terracotta/10 rounded transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Galerie
+              </a>
+              <a 
+                href="#contact" 
+                className="block py-2 px-4 hover:bg-terracotta/10 rounded transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </a>
+              <a href="tel:0490995193" className="block">
+                <Button className="w-full bg-terracotta text-white hover:bg-terracotta/90 py-3">
+                  <Phone className="w-4 h-4 mr-2" />
+                  Appeler - 04 90 99 51 93
+                </Button>
+              </a>
+            </div>
+          )}
         </div>
       </nav>
 
@@ -199,14 +269,14 @@ const Home = () => {
             <p className="text-xl md:text-2xl mb-8 font-light fade-in-up">
               Bistronomie provençale — produits frais, faits maison, au cœur d'Arles
             </p>
-            <div className="flex flex-col md:flex-row gap-4 justify-center fade-in-up">
-              <a href="tel:0490995193">
-                <Button variant="outline" className="border-2 border-terracotta text-white hover:bg-terracotta hover:text-white transition-all font-semibold">
+            <div className="flex flex-col md:flex-row gap-4 justify-center fade-in-up px-4">
+              <a href="tel:0490995193" className="w-full md:w-auto">
+                <Button variant="outline" className="w-full md:w-auto border-2 border-terracotta text-white hover:bg-terracotta hover:text-white transition-all font-semibold py-3 px-6">
                   Appeler pour réserver
                 </Button>
               </a>
-              <a href="#menus">
-                <Button className="bg-terracotta text-white hover:bg-terracotta/90 transition-all font-semibold">
+              <a href="#menus" className="w-full md:w-auto">
+                <Button className="w-full md:w-auto bg-terracotta text-white hover:bg-terracotta/90 transition-all font-semibold py-3 px-6">
                   Nos Menus
                 </Button>
               </a>
