@@ -36,7 +36,7 @@
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-xl font-bold text-blue-900">🔐 Configuration GitHub</h2>
                     <button onclick="resetConfig()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 text-sm">
-                        🔄 Réinitialiser le Token
+                        🔄 Réinitialiser
                     </button>
                 </div>
                 <div class="space-y-3">
@@ -56,7 +56,6 @@
                         💾 Sauvegarder la configuration
                     </button>
                 </div>
-                <div id="config-status" class="mt-3 p-2 rounded hidden"></div>
             </div>
             
             <!-- Section Menus -->
@@ -68,95 +67,25 @@
                     <div class="border border-gray-200 rounded-lg p-4 bg-cream/30">
                         <h3 class="font-bold text-lg mb-3 text-terracotta">Menu Gourmet</h3>
                         <input type="text" id="prix-gourmet" value="25,90€" class="w-full p-2 border border-gray-300 rounded mb-2" placeholder="Prix">
-                        <textarea id="items-gourmet" class="w-full p-2 border border-gray-300 rounded h-32" placeholder="Items du menu">Foie Gras Maison
-Assiette du Boucher
-Dessert du Chef
-Café ou Thé</textarea>
                     </div>
 
                     <!-- Menu Bistrot -->
                     <div class="border border-gray-200 rounded-lg p-4 bg-cream/30">
                         <h3 class="font-bold text-lg mb-3 text-terracotta">Menu Bistrot</h3>
                         <input type="text" id="prix-bistrot" value="15,90€" class="w-full p-2 border border-gray-300 rounded mb-2" placeholder="Prix">
-                        <textarea id="items-bistrot" class="w-full p-2 border border-gray-300 rounded h-32" placeholder="Items du menu">Entrée au choix
-Plat du Jour
-Dessert maison
-Café offert</textarea>
                     </div>
 
                     <!-- Menu Enfant -->
                     <div class="border border-gray-200 rounded-lg p-4 bg-cream/30">
                         <h3 class="font-bold text-lg mb-3 text-terracotta">Menu Enfant</h3>
                         <input type="text" id="prix-enfant" value="10,50€" class="w-full p-2 border border-gray-300 rounded mb-2" placeholder="Prix">
-                        <textarea id="items-enfant" class="w-full p-2 border border-gray-300 rounded h-32" placeholder="Items du menu">Steak haché
-Frites maison
-Glace au choix
-Sirop ou Jus</textarea>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Section Entrées -->
-            <div class="mb-10">
-                <h2 class="text-2xl font-bold text-chocolate mb-6 border-b-2 border-terracotta pb-2">🥗 Entrées</h2>
-                <div class="space-y-3" id="entrees-list">
-                    <div class="flex gap-3">
-                        <input type="text" value="Foie Gras Maison" class="flex-1 p-2 border border-gray-300 rounded entree-nom" placeholder="Nom du plat">
-                        <input type="text" value="16,90€" class="w-28 p-2 border border-gray-300 rounded entree-prix" placeholder="Prix">
-                    </div>
-                    <div class="flex gap-3">
-                        <input type="text" value="Planche Charcuterie" class="flex-1 p-2 border border-gray-300 rounded entree-nom" placeholder="Nom du plat">
-                        <input type="text" value="12,50€" class="w-28 p-2 border border-gray-300 rounded entree-prix" placeholder="Prix">
-                    </div>
-                    <div class="flex gap-3">
-                        <input type="text" value="Salade de Chèvre Chaud" class="flex-1 p-2 border border-gray-300 rounded entree-nom" placeholder="Nom du plat">
-                        <input type="text" value="11,90€" class="w-28 p-2 border border-gray-300 rounded entree-prix" placeholder="Prix">
-                    </div>
-                    <div class="flex gap-3">
-                        <input type="text" value="Tartare de Saumon" class="flex-1 p-2 border border-gray-300 rounded entree-nom" placeholder="Nom du plat">
-                        <input type="text" value="13,50€" class="w-28 p-2 border border-gray-300 rounded entree-prix" placeholder="Prix">
-                    </div>
-                    <div class="flex gap-3">
-                        <input type="text" value="Carpaccio de Bœuf" class="flex-1 p-2 border border-gray-300 rounded entree-nom" placeholder="Nom du plat">
-                        <input type="text" value="12,90€" class="w-28 p-2 border border-gray-300 rounded entree-prix" placeholder="Prix">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Section Plats -->
-            <div class="mb-10">
-                <h2 class="text-2xl font-bold text-chocolate mb-6 border-b-2 border-terracotta pb-2">🍽️ Plats</h2>
-                <div class="space-y-3" id="plats-list">
-                    <div class="flex gap-3">
-                        <input type="text" value="Magret de Canard" class="flex-1 p-2 border border-gray-300 rounded plat-nom" placeholder="Nom du plat">
-                        <input type="text" value="21,00€" class="w-28 p-2 border border-gray-300 rounded plat-prix" placeholder="Prix">
-                    </div>
-                    <div class="flex gap-3">
-                        <input type="text" value="Dorade Grillée" class="flex-1 p-2 border border-gray-300 rounded plat-nom" placeholder="Nom du plat">
-                        <input type="text" value="19,50€" class="w-28 p-2 border border-gray-300 rounded plat-prix" placeholder="Prix">
-                    </div>
-                    <div class="flex gap-3">
-                        <input type="text" value="Entrecôte Frites" class="flex-1 p-2 border border-gray-300 rounded plat-nom" placeholder="Nom du plat">
-                        <input type="text" value="19,00€" class="w-28 p-2 border border-gray-300 rounded plat-prix" placeholder="Prix">
-                    </div>
-                    <div class="flex gap-3">
-                        <input type="text" value="Pavé de Saumon" class="flex-1 p-2 border border-gray-300 rounded plat-nom" placeholder="Nom du plat">
-                        <input type="text" value="18,50€" class="w-28 p-2 border border-gray-300 rounded plat-prix" placeholder="Prix">
-                    </div>
-                    <div class="flex gap-3">
-                        <input type="text" value="Confit de Canard" class="flex-1 p-2 border border-gray-300 rounded plat-nom" placeholder="Nom du plat">
-                        <input type="text" value="20,00€" class="w-28 p-2 border border-gray-300 rounded plat-prix" placeholder="Prix">
-                    </div>
-                    <div class="flex gap-3">
-                        <input type="text" value="Tartare de Bœuf" class="flex-1 p-2 border border-gray-300 rounded plat-nom" placeholder="Nom du plat">
-                        <input type="text" value="15,90€" class="w-28 p-2 border border-gray-300 rounded plat-prix" placeholder="Prix">
                     </div>
                 </div>
             </div>
 
             <!-- Action Buttons -->
             <div class="flex gap-4 pt-6 border-t border-gray-200">
-                <button id="save-btn" onclick="publishChanges()" class="flex-1 bg-terracotta text-white py-4 rounded-lg hover:bg-terracotta/90 font-bold text-lg shadow-lg transition-all">
+                <button onclick="saveChanges()" class="flex-1 bg-terracotta text-white py-4 rounded-lg hover:bg-terracotta/90 font-bold text-lg shadow-lg transition-all">
                     🚀 Enregistrer et publier sur GitHub
                 </button>
                 <a href="index.html" class="flex-1">
@@ -168,7 +97,7 @@ Sirop ou Jus</textarea>
 
             <!-- Status -->
             <div id="status" class="mt-6 p-4 rounded-lg bg-gray-100 text-gray-700">
-                <p>💡 <strong>Prêt à enregistrer.</strong> Modifiez les prix ci-dessus puis cliquez sur "Enregistrer et publier sur GitHub".</p>
+                <p>💡 <strong>Prêt.</strong> Configurez GitHub ci-dessus, puis modifiez les prix et cliquez sur "Enregistrer".</p>
             </div>
         </div>
     </div>
@@ -182,13 +111,7 @@ function resetConfig() {
         localStorage.removeItem('github_token');
         document.getElementById('github-repo').value = '';
         document.getElementById('github-token').value = '';
-        
-        const configStatus = document.getElementById('config-status');
-        configStatus.className = 'mt-3 p-2 rounded bg-yellow-100 text-yellow-800';
-        configStatus.textContent = '🔄 Configuration réinitialisée. Veuillez entrer vos informations à nouveau.';
-        configStatus.classList.remove('hidden');
-        
-        alert('✅ Configuration réinitialisée ! Vous pouvez maintenant entrer un nouveau Token.');
+        alert('✅ Configuration réinitialisée !');
     }
 }
 
@@ -202,26 +125,15 @@ function saveGitHubConfig() {
         return;
     }
     
-    // Valider le format du repo
     if (!repo.includes('/')) {
         alert('⚠️ ERREUR : Le dépôt doit être au format "votre-nom/nom-du-depot"');
         return;
     }
     
-    // Valider le format du token
-    if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
-        alert('⚠️ ATTENTION : Votre token ne commence pas par "ghp_" ou "github_pat_". Êtes-vous sûr qu\'il est correct ?');
-    }
-    
     localStorage.setItem('github_repo', repo);
     localStorage.setItem('github_token', token);
     
-    const configStatus = document.getElementById('config-status');
-    configStatus.className = 'mt-3 p-2 rounded bg-green-100 text-green-800';
-    configStatus.innerHTML = `✅ <strong>Configuration sauvegardée !</strong><br>Dépôt : <code>${repo}</code>`;
-    configStatus.classList.remove('hidden');
-    
-    alert(`✅ SUCCÈS : Configuration GitHub sauvegardée !\n\nDépôt : ${repo}\n\nVous pouvez maintenant modifier les prix et cliquer sur "Enregistrer et publier sur GitHub".`);
+    alert(`✅ SUCCÈS : Configuration GitHub sauvegardée !\n\nDépôt : ${repo}\n\nVous pouvez maintenant modifier les prix et cliquer sur "Enregistrer".`);
 }
 
 // Charger la config au démarrage
@@ -232,66 +144,28 @@ window.onload = function() {
     if (repo && token) {
         document.getElementById('github-repo').value = repo;
         document.getElementById('github-token').value = token;
-        
-        const configStatus = document.getElementById('config-status');
-        configStatus.className = 'mt-3 p-2 rounded bg-green-100 text-green-800';
-        configStatus.innerHTML = `✅ Configuration chargée : <code>${repo}</code>`;
-        configStatus.classList.remove('hidden');
     }
 };
 
-function showStatus(message, type) {
-    const statusDiv = document.getElementById('status');
-    const saveBtn = document.getElementById('save-btn');
+// FONCTION PRINCIPALE DE SAUVEGARDE
+async function saveChanges() {
+    // ALERTE IMMÉDIATE
+    alert('🚀 Début de sauvegarde...\n\nConnexion à GitHub en cours.');
+    console.log('[Admin] Fonction saveChanges() appelée');
     
-    if (type === 'success') {
-        statusDiv.className = 'mt-6 p-4 rounded-lg bg-green-100 text-green-800 border-2 border-green-400';
-        saveBtn.disabled = false;
-        saveBtn.textContent = '✅ Enregistré !';
-        setTimeout(() => {
-            saveBtn.textContent = '🚀 Enregistrer et publier sur GitHub';
-        }, 3000);
-    } else if (type === 'error') {
-        statusDiv.className = 'mt-6 p-4 rounded-lg bg-red-100 text-red-800 border-2 border-red-400';
-        saveBtn.disabled = false;
-    } else {
-        statusDiv.className = 'mt-6 p-4 rounded-lg bg-blue-100 text-blue-800';
-        saveBtn.disabled = true;
-        saveBtn.textContent = '⏳ Enregistrement...';
-    }
-    
-    statusDiv.innerHTML = `<strong>${message}</strong>`;
-    console.log(`[Admin] ${message}`);
-}
-
-// FONCTION D'ENCODAGE UTF-8 INFAILLIBLE
-function stringToBase64UTF8(str) {
-    // Méthode la plus robuste : utiliser Blob
-    return new Promise((resolve) => {
-        const blob = new Blob([str], { type: 'text/plain;charset=utf-8' });
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            const base64 = reader.result.split(',')[1];
-            resolve(base64);
-        };
-        reader.readAsDataURL(blob);
-    });
-}
-
-async function publishChanges() {
     const repo = localStorage.getItem('github_repo');
     const token = localStorage.getItem('github_token');
     
     if (!repo || !token) {
-        alert('⚠️ Veuillez d\'abord configurer GitHub (remplissez les champs en haut)');
-        document.getElementById('github-config').classList.remove('hidden');
+        alert('❌ ERREUR : Configuration GitHub manquante !\n\nVeuillez remplir le nom du dépôt et le token GitHub dans le bloc bleu ci-dessus.');
         return;
     }
     
-    showStatus('⏳ Récupération du fichier index.html...', 'info');
+    console.log('[Admin] Config GitHub:', { repo, tokenLength: token.length });
     
     try {
-        // 1. Récupérer le fichier index.html actuel
+        // 1. Récupérer le fichier index.html depuis GitHub
+        console.log('[Admin] Récupération de index.html depuis GitHub...');
         const getResponse = await fetch(`https://api.github.com/repos/${repo}/contents/index.html`, {
             headers: {
                 'Authorization': `token ${token}`,
@@ -300,83 +174,80 @@ async function publishChanges() {
         });
         
         if (!getResponse.ok) {
-            throw new Error(`Erreur GitHub: ${getResponse.status} - Vérifiez le nom du dépôt et le token`);
+            const errorData = await getResponse.json();
+            throw new Error(`GitHub API erreur ${getResponse.status}: ${errorData.message}`);
         }
         
         const fileData = await getResponse.json();
+        console.log('[Admin] Fichier récupéré, SHA:', fileData.sha);
         
-        // Décoder le contenu actuel (méthode native GitHub - déjà en UTF-8)
-        const currentContent = decodeURIComponent(escape(atob(fileData.content)));
-        
-        showStatus('⏳ Mise à jour des prix...', 'info');
-        
-        // 2. Récupérer les nouvelles valeurs
-        const entreeNoms = Array.from(document.querySelectorAll('.entree-nom')).map(el => el.value);
-        const entreePrix = Array.from(document.querySelectorAll('.entree-prix')).map(el => el.value);
-        const platNoms = Array.from(document.querySelectorAll('.plat-nom')).map(el => el.value);
-        const platPrix = Array.from(document.querySelectorAll('.plat-prix')).map(el => el.value);
-        
-        // 3. Modifier le contenu HTML
-        let updatedContent = currentContent;
-        
-        // Remplacer les prix des entrées
-        if (entreeNoms[0] && entreePrix[0]) {
-            updatedContent = updatedContent.replace(
-                /<span class="text-lg">Foie Gras Maison<\/span>\s*<span class="flex-1[^>]*><\/span>\s*<span class="font-semibold text-lg">[^<]*<\/span>/,
-                `<span class="text-lg">${entreeNoms[0]}</span>\n                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>\n                                    <span class="font-semibold text-lg">${entreePrix[0]}</span>`
-            );
+        // Décoder le contenu actuel
+        const binaryString = atob(fileData.content);
+        const bytes = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
         }
+        let currentContent = new TextDecoder('utf-8').decode(bytes);
         
-        // Remplacer les prix des plats
-        if (platNoms[0] && platPrix[0]) {
-            updatedContent = updatedContent.replace(
-                /<span class="text-lg">Magret de Canard<\/span>\s*<span class="flex-1[^>]*><\/span>\s*<span class="font-semibold text-lg">[^<]*<\/span>/,
-                `<span class="text-lg">${platNoms[0]}</span>\n                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>\n                                    <span class="font-semibold text-lg">${platPrix[0]}</span>`
-            );
-        }
+        console.log('[Admin] Contenu décodé, taille:', currentContent.length);
         
-        // Remplacer le prix du Menu Gourmet
+        // 2. Récupérer les nouveaux prix
         const prixGourmet = document.getElementById('prix-gourmet').value;
         const prixBistrot = document.getElementById('prix-bistrot').value;
         const prixEnfant = document.getElementById('prix-enfant').value;
         
         console.log('[Admin] Nouveaux prix:', { gourmet: prixGourmet, bistrot: prixBistrot, enfant: prixEnfant });
         
-        // Regex plus précise pour Menu Gourmet (1er menu)
+        // 3. Remplacer les prix dans le HTML
+        // Menu Gourmet
         const gourmetRegex = /(<h3 class="font-serif text-2xl mb-4 text-terracotta">Menu Gourmet<\/h3>\s*<div class="text-4xl font-bold mb-6 text-chocolate">)[^<]+(€<\/div>)/;
-        if (gourmetRegex.test(updatedContent)) {
-            updatedContent = updatedContent.replace(gourmetRegex, `$1${prixGourmet}$2`);
-            console.log('[Admin] Menu Gourmet remplacé par:', prixGourmet);
+        if (gourmetRegex.test(currentContent)) {
+            currentContent = currentContent.replace(gourmetRegex, `$1${prixGourmet}$2`);
+            console.log('[Admin] ✓ Menu Gourmet remplacé');
         } else {
-            console.warn('[Admin] Menu Gourmet non trouvé dans le HTML');
+            console.warn('[Admin] ✗ Menu Gourmet non trouvé');
         }
         
-        // Menu Bistrot (2e menu)
+        // Menu Bistrot
         const bistrotRegex = /(<h3 class="font-serif text-2xl mb-4 text-terracotta">Menu Bistrot<\/h3>\s*<div class="text-4xl font-bold mb-6 text-chocolate">)[^<]+(€<\/div>)/;
-        if (bistrotRegex.test(updatedContent)) {
-            updatedContent = updatedContent.replace(bistrotRegex, `$1${prixBistrot}$2`);
-            console.log('[Admin] Menu Bistrot remplacé par:', prixBistrot);
+        if (bistrotRegex.test(currentContent)) {
+            currentContent = currentContent.replace(bistrotRegex, `$1${prixBistrot}$2`);
+            console.log('[Admin] ✓ Menu Bistrot remplacé');
+        } else {
+            console.warn('[Admin] ✗ Menu Bistrot non trouvé');
         }
         
-        // Menu Enfant (3e menu)
+        // Menu Enfant
         const enfantRegex = /(<h3 class="font-serif text-2xl mb-4 text-terracotta">Menu Enfant<\/h3>\s*<div class="text-4xl font-bold mb-6 text-chocolate">)[^<]+(€<\/div>)/;
-        if (enfantRegex.test(updatedContent)) {
-            updatedContent = updatedContent.replace(enfantRegex, `$1${prixEnfant}$2`);
-            console.log('[Admin] Menu Enfant remplacé par:', prixEnfant);
+        if (enfantRegex.test(currentContent)) {
+            currentContent = currentContent.replace(enfantRegex, `$1${prixEnfant}$2`);
+            console.log('[Admin] ✓ Menu Enfant remplacé');
+        } else {
+            console.warn('[Admin] ✗ Menu Enfant non trouvé');
         }
         
-        showStatus('⏳ Encodage UTF-8 et envoi vers GitHub...', 'info');
+        // 4. Encoder en UTF-8 puis Base64
+        console.log('[Admin] Encodage en Base64...');
+        const utf8Bytes = new TextEncoder().encode(currentContent);
+        let binaryStr = '';
+        const chunkSize = 32768;
         
-        // 4. ENCODAGE UTF-8 INFAILLIBLE avec Blob
-        const base64Content = await stringToBase64UTF8(updatedContent);
+        for (let i = 0; i < utf8Bytes.length; i += chunkSize) {
+            const chunk = utf8Bytes.subarray(i, Math.min(i + chunkSize, utf8Bytes.length));
+            binaryStr += String.fromCharCode.apply(null, chunk);
+        }
         
-        // 5. Envoyer la mise à jour
+        const base64Content = btoa(binaryStr);
+        console.log('[Admin] Encodage terminé, taille base64:', base64Content.length);
+        
+        // 5. Envoyer la mise à jour à GitHub
+        console.log('[Admin] Envoi vers GitHub...');
         const updateResponse = await fetch(`https://api.github.com/repos/${repo}/contents/index.html`, {
             method: 'PUT',
             headers: {
                 'Authorization': `token ${token}`,
                 'Accept': 'application/vnd.github.v3+json',
-                'Content-Type': 'application/json; charset=utf-8'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 message: 'Mise à jour des prix via admin',
@@ -388,22 +259,26 @@ async function publishChanges() {
         if (!updateResponse.ok) {
             const errorData = await updateResponse.json();
             console.error('[Admin] Erreur GitHub:', errorData);
-            throw new Error(`Erreur ${updateResponse.status}: ${errorData.message || 'Vérifiez vos permissions'}`);
+            throw new Error(`Erreur ${updateResponse.status}: ${errorData.message}`);
         }
         
         const result = await updateResponse.json();
-        console.log('[Admin] Succès GitHub:', result);
+        console.log('[Admin] ✅ Succès GitHub:', result);
         
         alert('✅ SUCCÈS : SITE MIS À JOUR !\n\nVos modifications ont été publiées sur GitHub.\n\nRechargez votre site (F5) pour voir les changements.');
-        showStatus('✅ SUCCÈS ! Vos modifications sont publiées sur GitHub. Rechargez votre site pour voir les changements.', 'success');
+        
+        document.getElementById('status').className = 'mt-6 p-4 rounded-lg bg-green-100 text-green-800 border-2 border-green-400';
+        document.getElementById('status').innerHTML = '<strong>✅ Modifications publiées avec succès !</strong>';
         
     } catch (error) {
-        console.error('[Admin] Erreur complète:', error);
+        console.error('[Admin] ❌ Erreur:', error);
         
-        const errorMessage = `❌ ERREUR : ${error.message}\n\nVÉRIFIEZ :\n1. Votre token GitHub a les permissions "repo"\n2. Le nom du dépôt est correct (format: votre-nom/bistrot-arlesien)\n3. Le fichier index.html existe bien dans votre dépôt\n4. Vous êtes propriétaire du dépôt ou avez les droits d'écriture`;
+        const errorMessage = `❌ ERREUR : ${error.message}\n\nVÉRIFIEZ :\n1. Votre token GitHub a les permissions "repo"\n2. Le nom du dépôt est correct (format: votre-nom/bistrot-arlesien)\n3. Le fichier index.html existe bien dans votre dépôt\n4. Vous avez les droits d'écriture sur ce dépôt`;
         
         alert(errorMessage);
-        showStatus(`❌ ERREUR : ${error.message}<br><br>Vérifiez :<br>1. Votre token GitHub a les permissions "repo"<br>2. Le nom du dépôt est correct (votre-nom/bistrot-arlesien)<br>3. Le fichier index.html existe bien dans votre dépôt`, 'error');
+        
+        document.getElementById('status').className = 'mt-6 p-4 rounded-lg bg-red-100 text-red-800 border-2 border-red-400';
+        document.getElementById('status').innerHTML = `<strong>❌ ERREUR :</strong> ${error.message}`;
     }
 }
 </script>
