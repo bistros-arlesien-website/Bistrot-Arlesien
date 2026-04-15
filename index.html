@@ -401,7 +401,7 @@
             <h3 class="font-serif text-2xl mb-4">Bistrot Arlésien</h3>
             <p class="mb-4">Bistronomie provençale au cœur d'Arles</p>
             <p class="text-sm opacity-80">
-                <span id="copyright-trigger" class="cursor-pointer hover:opacity-100 transition-opacity" title="Admin">©</span> 2024 Bistrot Arlésien - 5 Place du Forum, 13200 Arles
+                <span id="admin-access" class="cursor-pointer hover:opacity-100 transition-opacity" title="Admin" onclick="checkAdminAccess()">©</span> 2024 Bistrot Arlésien - 5 Place du Forum, 13200 Arles
             </p>
         </div>
     </footer>
@@ -701,6 +701,15 @@
         }
 
         // ========== ADMIN FUNCTIONS ==========
+        function checkAdminAccess() {
+            const code = prompt('🔐 Entrez le code secret :');
+            if (code === '13200bistrotarlésiensite') {
+                openAdminPanel();
+            } else if (code !== null) {
+                alert('❌ Code incorrect');
+            }
+        }
+
         function closeModal(id) {
             document.getElementById(id).classList.remove('active');
         }
@@ -987,15 +996,13 @@
             const fadeElements = document.querySelectorAll('.fade-in-up');
             fadeElements.forEach(el => observer.observe(el));
             
-            // Copyright trigger
-            document.getElementById('copyright-trigger').addEventListener('click', () => {
-                document.getElementById('login-modal').classList.add('active');
-            });
-            
-            // Enter key for login
-            document.getElementById('admin-password').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') adminLogin();
-            });
+            // Enter key for login (if modal is used)
+            const adminPasswordField = document.getElementById('admin-password');
+            if (adminPasswordField) {
+                adminPasswordField.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') adminLogin();
+                });
+            }
         });
     </script>
 </body>
