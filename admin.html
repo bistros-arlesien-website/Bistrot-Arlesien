@@ -21,7 +21,7 @@
 </head>
 <body class="bg-gray-50">
 
-<div class="min-h-screen py-12 px-4">
+<div id="admin-content" style="display:none;" class="min-h-screen py-12 px-4">
     <div class="max-w-6xl mx-auto">
         <!-- Header -->
         <div class="bg-terracotta text-white p-6 rounded-t-xl shadow-lg">
@@ -275,14 +275,27 @@ function saveGitHubConfig() {
     alert(`✅ SUCCÈS : Configuration GitHub sauvegardée !\n\nDépôt : ${repo}`);
 }
 
-// Charger la config au démarrage
+// VÉRIFICATION DU MOT DE PASSE AU CHARGEMENT
 window.onload = function() {
-    const repo = localStorage.getItem('github_repo');
-    const token = localStorage.getItem('github_token');
+    // Demander le code d'accès
+    const code = prompt('🔐 Code d\'accès requis :');
     
-    if (repo && token) {
-        document.getElementById('github-repo').value = repo;
-        document.getElementById('github-token').value = token;
+    if (code === '13200bistrotarlésiensite') {
+        // Code correct : afficher l'interface admin
+        document.getElementById('admin-content').style.display = 'block';
+        
+        // Charger la config GitHub
+        const repo = localStorage.getItem('github_repo');
+        const token = localStorage.getItem('github_token');
+        
+        if (repo && token) {
+            document.getElementById('github-repo').value = repo;
+            document.getElementById('github-token').value = token;
+        }
+    } else {
+        // Code incorrect : rediriger vers index.html
+        alert('❌ Code incorrect. Redirection vers le site...');
+        window.location.href = 'index.html';
     }
 };
 
