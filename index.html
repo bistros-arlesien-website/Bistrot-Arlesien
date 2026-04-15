@@ -66,10 +66,84 @@
             outline: 2px solid #CD6155;
             outline-offset: 2px;
         }
+        
+        /* Admin Panel Styles */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 9999;
+            overflow-y: auto;
+        }
+        
+        .admin-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .admin-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .admin-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        
+        .admin-input:focus {
+            outline: none;
+            border-color: #CD6155;
+        }
+        
+        .admin-btn {
+            background: #CD6155;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .admin-btn:hover {
+            background: #b5534a;
+            transform: translateY(-2px);
+        }
+        
+        .admin-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        
+        .item-editor {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
     </style>
 </head>
 
-<body class="bg-cream text-chocolate">
+<body class="bg-cream text-chocolate" id="main-body">
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full bg-cream/95 backdrop-blur-sm z-50 shadow-sm">
@@ -132,7 +206,7 @@
                     <span class="bg-terracotta/80 px-4 py-2 rounded-full text-sm font-semibold">[CUISINE MAISON]</span>
                     <span class="bg-terracotta/80 px-4 py-2 rounded-full text-sm font-semibold">[ARLES]</span>
                 </div>
-                <p class="text-xl md:text-2xl mb-8 font-light fade-in-up">
+                <p class="text-xl md:text-2xl mb-8 font-light fade-in-up" id="hero-subtitle">
                     Bistronomie provençale — produits frais, faits maison, au cœur d'Arles
                 </p>
                 <div class="flex flex-col md:flex-row gap-4 justify-center fade-in-up px-4">
@@ -161,19 +235,20 @@
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div class="fade-in-up">
                         <img 
+                            id="identity-image"
                             src="https://customer-assets.emergentagent.com/job_provence-dining/artifacts/gsyxbdua_qzmlkjdlkqzjdklmjqz.webp" 
                             alt="Entrecôte grillée, frites maison et salade fraîche - Spécialité Bistrot Arlésien" 
                             class="h-80 w-full object-cover rounded-lg shadow-lg"
                         />
                     </div>
                     <div class="fade-in-up">
-                        <p class="text-lg leading-relaxed mb-6">
+                        <p class="text-lg leading-relaxed mb-6" id="identity-text-1">
                             Au Bistrot Arlésien, tout est préparé maison avec un savoir-faire artisanal qui respecte les traditions culinaires provençales. Nous sélectionnons chaque matin des produits frais et locaux auprès de nos producteurs partenaires.
                         </p>
-                        <p class="text-lg leading-relaxed mb-6">
+                        <p class="text-lg leading-relaxed mb-6" id="identity-text-2">
                             Installés en plein cœur d'Arles, sur la mythique Place du Forum, nous vous accueillons dans une atmosphère chaleureuse et authentique où se mélangent tradition et modernité.
                         </p>
-                        <p class="text-lg leading-relaxed">
+                        <p class="text-lg leading-relaxed" id="identity-text-3">
                             Notre équipe passionnée met un point d'honneur à vous offrir une expérience gastronomique unique, où chaque plat raconte l'histoire de notre belle Provence.
                         </p>
                     </div>
@@ -184,7 +259,6 @@
 
     <!-- Section Menus -->
     <section id="menus" class="py-20 bg-cream relative">
-        <!-- Background pattern -->
         <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23CD6155&quot; fill-opacity=&quot;1&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
         
         <div class="container mx-auto px-4 relative z-10">
@@ -194,60 +268,8 @@
                 </h2>
                 <p class="text-center text-gray-600 mb-16 fade-in-up">Découvrez nos formules préparées avec amour</p>
                 
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Menu Gourmet -->
-                    <div class="fade-in-up bg-white border-2 border-terracotta/20 rounded-lg p-8 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300" style="background-image: linear-gradient(to bottom, rgba(250, 246, 242, 0.5), rgba(255, 255, 255, 1));">
-                        <div class="text-center">
-                            <svg class="w-16 h-16 text-terracotta mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"></path><line x1="6" y1="17" x2="18" y2="17"></line></svg>
-                            <h3 class="font-serif text-2xl mb-4 text-terracotta">Menu Gourmet</h3>
-                            <div class="text-4xl font-bold mb-6 text-chocolate">25,90€</div>
-                        </div>
-                        <div class="border-t-2 border-b-2 border-terracotta/20 py-4 mb-4">
-                            <ul class="space-y-3 text-gray-700">
-                                <li class="flex items-center"><span class="w-2 h-2 bg-terracotta rounded-full mr-3"></span>Foie Gras Maison</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-terracotta rounded-full mr-3"></span>Assiette du Boucher</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-terracotta rounded-full mr-3"></span>Dessert du Chef</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-terracotta rounded-full mr-3"></span>Café ou Thé</li>
-                            </ul>
-                        </div>
-                        <p class="text-sm text-center text-terracotta font-semibold italic">Notre sélection raffinée</p>
-                    </div>
-
-                    <!-- Menu Bistrot -->
-                    <div class="fade-in-up bg-white border-2 border-terracotta/20 rounded-lg p-8 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300" style="background-image: linear-gradient(to bottom, rgba(250, 246, 242, 0.5), rgba(255, 255, 255, 1));">
-                        <div class="text-center">
-                            <svg class="w-16 h-16 text-terracotta mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>
-                            <h3 class="font-serif text-2xl mb-4 text-terracotta">Menu Bistrot</h3>
-                            <div class="text-4xl font-bold mb-6 text-chocolate">15,90€</div>
-                        </div>
-                        <div class="border-t-2 border-b-2 border-terracotta/20 py-4 mb-4">
-                            <ul class="space-y-3 text-gray-700">
-                                <li class="flex items-center"><span class="w-2 h-2 bg-terracotta rounded-full mr-3"></span>Entrée au choix</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-terracotta rounded-full mr-3"></span>Plat du Jour</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-terracotta rounded-full mr-3"></span>Dessert maison</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-terracotta rounded-full mr-3"></span>Café offert</li>
-                            </ul>
-                        </div>
-                        <p class="text-sm text-center text-terracotta font-semibold italic">Midi uniquement</p>
-                    </div>
-
-                    <!-- Menu Enfant -->
-                    <div class="fade-in-up bg-white border-2 border-terracotta/20 rounded-lg p-8 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300" style="background-image: linear-gradient(to bottom, rgba(250, 246, 242, 0.5), rgba(255, 255, 255, 1));">
-                        <div class="text-center">
-                            <svg class="w-16 h-16 text-terracotta mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 11h.01"></path><path d="M11 15h.01"></path><path d="M16 16h.01"></path><path d="m2 16 20 6-6-20A20 20 0 0 0 2 16"></path><path d="M5.71 17.11a17.04 17.04 0 0 1 11.4-11.4"></path></svg>
-                            <h3 class="font-serif text-2xl mb-4 text-terracotta">Menu Enfant</h3>
-                            <div class="text-4xl font-bold mb-6 text-chocolate">10,50€</div>
-                        </div>
-                        <div class="border-t-2 border-b-2 border-terracotta/20 py-4 mb-4">
-                            <ul class="space-y-3 text-gray-700">
-                                <li class="flex items-center"><span class="w-2 h-2 bg-terracotta rounded-full mr-3"></span>Steak haché</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-terracotta rounded-full mr-3"></span>Frites maison</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-terracotta rounded-full mr-3"></span>Glace au choix</li>
-                                <li class="flex items-center"><span class="w-2 h-2 bg-terracotta rounded-full mr-3"></span>Sirop ou Jus</li>
-                            </ul>
-                        </div>
-                        <p class="text-sm text-center text-terracotta font-semibold italic">Jusqu'à 12 ans</p>
-                    </div>
+                <div class="grid md:grid-cols-3 gap-8" id="menus-container">
+                    <!-- Menus will be loaded dynamically -->
                 </div>
             </div>
         </div>
@@ -262,192 +284,8 @@
                 </h2>
                 <p class="text-center text-cream/80 mb-16 fade-in-up">Découvrez nos spécialités</p>
                 
-                <!-- Menu Grid - 2 Columns -->
-                <div class="grid md:grid-cols-2 gap-x-16 gap-y-12">
-                    <!-- Column 1 -->
-                    <div class="space-y-12">
-                        <!-- Entrées -->
-                        <div class="fade-in-up">
-                            <h3 class="font-cursive text-4xl mb-6 text-terracotta text-center md:text-left">Entrées</h3>
-                            <div class="space-y-3">
-                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
-                                    <span class="text-lg">Foie Gras Maison</span>
-                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                    <span class="font-semibold text-lg">16,90€</span>
-                                </div>
-                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
-                                    <span class="text-lg">Planche Charcuterie</span>
-                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                    <span class="font-semibold text-lg">12,50€</span>
-                                </div>
-                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
-                                    <span class="text-lg">Salade de Chèvre Chaud</span>
-                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                    <span class="font-semibold text-lg">11,90€</span>
-                                </div>
-                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
-                                    <span class="text-lg">Tartare de Saumon</span>
-                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                    <span class="font-semibold text-lg">13,50€</span>
-                                </div>
-                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
-                                    <span class="text-lg">Carpaccio de Bœuf</span>
-                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                    <span class="font-semibold text-lg">12,90€</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Burgers -->
-                        <div class="fade-in-up">
-                            <h3 class="font-cursive text-4xl mb-6 text-terracotta text-center md:text-left">Burgers</h3>
-                            <div class="space-y-3">
-                                <div class="text-cream pb-2 border-b border-cream/20">
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-lg font-semibold">Le Rossini</span>
-                                        <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                        <span class="font-semibold text-lg">17,90€</span>
-                                    </div>
-                                    <p class="text-sm text-cream/70 mt-1 italic">Foie gras, confit d'oignons</p>
-                                </div>
-                                <div class="text-cream pb-2 border-b border-cream/20">
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-lg font-semibold">Le Royal Cheese</span>
-                                        <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                        <span class="font-semibold text-lg">15,90€</span>
-                                    </div>
-                                    <p class="text-sm text-cream/70 mt-1 italic">Double cheddar, bacon</p>
-                                </div>
-                                <div class="text-cream pb-2 border-b border-cream/20">
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-lg font-semibold">Le Provençal</span>
-                                        <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                        <span class="font-semibold text-lg">16,50€</span>
-                                    </div>
-                                    <p class="text-sm text-cream/70 mt-1 italic">Chèvre, miel, roquette</p>
-                                </div>
-                                <div class="text-cream pb-2 border-b border-cream/20">
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-lg font-semibold">Le Classic</span>
-                                        <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                        <span class="font-semibold text-lg">14,50€</span>
-                                    </div>
-                                    <p class="text-sm text-cream/70 mt-1 italic">Cheddar, salade, tomate</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Desserts -->
-                        <div class="fade-in-up">
-                            <h3 class="font-cursive text-4xl mb-6 text-terracotta text-center md:text-left">Desserts</h3>
-                            <div class="space-y-3">
-                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
-                                    <span class="text-lg">Tiramisu Maison</span>
-                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                    <span class="font-semibold text-lg">7,50€</span>
-                                </div>
-                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
-                                    <span class="text-lg">Crème Brûlée</span>
-                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                    <span class="font-semibold text-lg">7,00€</span>
-                                </div>
-                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
-                                    <span class="text-lg">Tarte Tatin</span>
-                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                    <span class="font-semibold text-lg">8,00€</span>
-                                </div>
-                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
-                                    <span class="text-lg">Coupe Glacée</span>
-                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                    <span class="font-semibold text-lg">6,50€</span>
-                                </div>
-                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
-                                    <span class="text-lg">Fondant au Chocolat</span>
-                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                    <span class="font-semibold text-lg">8,50€</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Column 2 -->
-                    <div class="space-y-12">
-                        <!-- Plats -->
-                        <div class="fade-in-up">
-                            <h3 class="font-cursive text-4xl mb-6 text-terracotta text-center md:text-left">Plats</h3>
-                            <div class="space-y-3">
-                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
-                                    <span class="text-lg">Magret de Canard</span>
-                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                    <span class="font-semibold text-lg">21,00€</span>
-                                </div>
-                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
-                                    <span class="text-lg">Dorade Grillée</span>
-                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                    <span class="font-semibold text-lg">19,50€</span>
-                                </div>
-                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
-                                    <span class="text-lg">Entrecôte Frites</span>
-                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                    <span class="font-semibold text-lg">19,00€</span>
-                                </div>
-                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
-                                    <span class="text-lg">Pavé de Saumon</span>
-                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                    <span class="font-semibold text-lg">18,50€</span>
-                                </div>
-                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
-                                    <span class="text-lg">Confit de Canard</span>
-                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                    <span class="font-semibold text-lg">20,00€</span>
-                                </div>
-                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
-                                    <span class="text-lg">Tartare de Bœuf</span>
-                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                    <span class="font-semibold text-lg">15,90€</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pizzas -->
-                        <div class="fade-in-up">
-                            <h3 class="font-cursive text-4xl mb-6 text-terracotta text-center md:text-left">Pizzas</h3>
-                            <div class="space-y-3">
-                                <div class="text-cream pb-2 border-b border-cream/20">
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-lg font-semibold">Regina</span>
-                                        <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                        <span class="font-semibold text-lg">13,00€</span>
-                                    </div>
-                                    <p class="text-sm text-cream/70 mt-1 italic">Jambon, champignons</p>
-                                </div>
-                                <div class="text-cream pb-2 border-b border-cream/20">
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-lg font-semibold">Provençale</span>
-                                        <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                        <span class="font-semibold text-lg">12,50€</span>
-                                    </div>
-                                    <p class="text-sm text-cream/70 mt-1 italic">Légumes du soleil</p>
-                                </div>
-                                <div class="text-cream pb-2 border-b border-cream/20">
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-lg font-semibold">Quatre Fromages</span>
-                                        <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                        <span class="font-semibold text-lg">14,00€</span>
-                                    </div>
-                                    <p class="text-sm text-cream/70 mt-1 italic">Mozzarella, chèvre, bleu, emmental</p>
-                                </div>
-                                <div class="text-cream pb-2 border-b border-cream/20">
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-lg font-semibold">Reine</span>
-                                        <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
-                                        <span class="font-semibold text-lg">13,50€</span>
-                                    </div>
-                                    <p class="text-sm text-cream/70 mt-1 italic">Jambon, olives, champignons</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="grid md:grid-cols-2 gap-x-16 gap-y-12" id="carte-container">
+                    <!-- Carte will be loaded dynamically -->
                 </div>
             </div>
         </div>
@@ -460,31 +298,8 @@
                 <h2 class="font-serif text-4xl md:text-5xl text-center mb-16 fade-in-up">
                     Nos Spécialités
                 </h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 fade-in-up">
-                    <div class="aspect-square rounded-lg overflow-hidden hover:scale-105 transition-transform shadow-md">
-                        <img src="https://customer-assets.emergentagent.com/job_provence-dining/artifacts/gsyxbdua_qzmlkjdlkqzjdklmjqz.webp" alt="Entrecôte Grillée" class="w-full h-full object-cover">
-                    </div>
-                    <div class="aspect-square rounded-lg overflow-hidden hover:scale-105 transition-transform shadow-md">
-                        <img src="https://customer-assets.emergentagent.com/job_provence-dining/artifacts/shf1k639_qlmkjzdlmkzqj.webp" alt="Salade Mixte" class="w-full h-full object-cover">
-                    </div>
-                    <div class="aspect-square rounded-lg overflow-hidden hover:scale-105 transition-transform shadow-md">
-                        <img src="https://customer-assets.emergentagent.com/job_provence-dining/artifacts/le1ab021_qljdlkzqjdkjq.webp" alt="Planche Charcuterie" class="w-full h-full object-cover">
-                    </div>
-                    <div class="aspect-square rounded-lg overflow-hidden hover:scale-105 transition-transform shadow-md">
-                        <img src="https://customer-assets.emergentagent.com/job_provence-dining/artifacts/bxuf54ug_dzqqqqqqqsdqs.webp" alt="Dessert Macaron" class="w-full h-full object-cover">
-                    </div>
-                    <div class="aspect-square rounded-lg overflow-hidden hover:scale-105 transition-transform shadow-md">
-                        <img src="https://customer-assets.emergentagent.com/job_provence-dining/artifacts/hap3ch6h_dzqqqqqqqzz.webp" alt="Pizza Jambon Cru" class="w-full h-full object-cover">
-                    </div>
-                    <div class="aspect-square rounded-lg overflow-hidden hover:scale-105 transition-transform shadow-md">
-                        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349" alt="Burgers Gourmands" class="w-full h-full object-cover">
-                    </div>
-                    <div class="aspect-square rounded-lg overflow-hidden hover:scale-105 transition-transform shadow-md">
-                        <img src="https://images.unsplash.com/photo-1600699899970-b1c9fadd8f9e" alt="Poisson Grillé" class="w-full h-full object-cover">
-                    </div>
-                    <div class="aspect-square rounded-lg overflow-hidden hover:scale-105 transition-transform shadow-md">
-                        <img src="https://images.unsplash.com/photo-1608897013039-887f21d8c804" alt="Pâtes Fraîches" class="w-full h-full object-cover">
-                    </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 fade-in-up" id="gallery-container">
+                    <!-- Gallery will be loaded dynamically -->
                 </div>
             </div>
         </div>
@@ -498,7 +313,6 @@
                     Nous Contacter
                 </h2>
                 <div class="grid md:grid-cols-2 gap-12 mb-16">
-                    <!-- Informations -->
                     <div class="bg-terracotta text-white p-8 rounded-xl fade-in-up">
                         <h3 class="font-serif text-3xl mb-8">Où nous trouver ?</h3>
                         <div class="space-y-6">
@@ -519,7 +333,6 @@
                         </div>
                     </div>
                     
-                    <!-- Image Restaurant -->
                     <div class="fade-in-up">
                         <img 
                             src="https://customer-assets.emergentagent.com/job_5402dfc9-f18a-4ac1-918e-f12a259e280c/artifacts/ql8ujsuf_unnamed%20%281%29.jpg" 
@@ -529,7 +342,6 @@
                     </div>
                 </div>
 
-                <!-- Contact Methods -->
                 <div class="grid md:grid-cols-3 gap-8 mb-12 fade-in-up">
                     <div class="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow">
                         <svg class="w-12 h-12 mx-auto mb-4 text-terracotta" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
@@ -550,7 +362,6 @@
                     </div>
                 </div>
 
-                <!-- Google Maps -->
                 <div class="mb-12 fade-in-up">
                     <div class="rounded-xl overflow-hidden shadow-lg">
                         <iframe 
@@ -566,7 +377,6 @@
                     </div>
                 </div>
 
-                <!-- Call to Action Buttons -->
                 <div class="flex flex-col md:flex-row gap-4 justify-center fade-in-up">
                     <a href="tel:0490995193">
                         <button class="bg-terracotta text-white px-8 py-6 text-lg hover:bg-terracotta/90 transition-all font-semibold w-full md:w-auto shadow-lg hover:shadow-xl rounded-lg flex items-center justify-center gap-2">
@@ -590,52 +400,602 @@
         <div class="container mx-auto px-4 text-center">
             <h3 class="font-serif text-2xl mb-4">Bistrot Arlésien</h3>
             <p class="mb-4">Bistronomie provençale au cœur d'Arles</p>
-            <p class="text-sm opacity-80">© 2024 Bistrot Arlésien - 5 Place du Forum, 13200 Arles</p>
+            <p class="text-sm opacity-80">
+                <span id="copyright-trigger" class="cursor-pointer hover:opacity-100 transition-opacity" title="Admin">©</span> 2024 Bistrot Arlésien - 5 Place du Forum, 13200 Arles
+            </p>
         </div>
     </footer>
 
+    <!-- Admin Login Modal -->
+    <div id="login-modal" class="admin-modal">
+        <div class="admin-content max-w-md">
+            <h2 class="text-2xl font-bold mb-6 text-center">🔐 Accès Administration</h2>
+            <input 
+                type="password" 
+                id="admin-password" 
+                class="admin-input" 
+                placeholder="Code secret"
+                autocomplete="off"
+            />
+            <button onclick="adminLogin()" class="admin-btn w-full">Se connecter</button>
+            <button onclick="closeModal('login-modal')" class="mt-3 text-gray-600 w-full">Annuler</button>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="admin-panel" class="admin-modal">
+        <div class="admin-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold">⚙️ Administration</h2>
+                <button onclick="closeModal('admin-panel')" class="text-2xl">&times;</button>
+            </div>
+
+            <!-- GitHub Config (first time only) -->
+            <div id="github-config" class="admin-section hidden">
+                <h3 class="text-xl font-bold mb-4">Configuration GitHub (une seule fois)</h3>
+                <p class="mb-4 text-sm text-gray-600">Pour publier automatiquement vos modifications, entrez vos informations GitHub :</p>
+                <input type="text" id="github-username" class="admin-input" placeholder="Votre nom d'utilisateur GitHub" />
+                <input type="text" id="github-repo" class="admin-input" placeholder="Nom du repository (ex: bistrot-arlesien)" />
+                <input type="password" id="github-token" class="admin-input" placeholder="Token GitHub (voir instructions)" />
+                <button onclick="saveGitHubConfig()" class="admin-btn">Sauvegarder la configuration</button>
+                <p class="mt-4 text-xs text-gray-500">
+                    Pour créer un token : GitHub > Settings > Developer settings > Personal access tokens > Generate new token (classic) > Cochez "repo" > Generate
+                </p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex gap-2 mb-6 flex-wrap">
+                <button onclick="showTab('carte')" id="tab-carte" class="admin-btn">La Carte</button>
+                <button onclick="showTab('textes')" id="tab-textes" class="admin-btn bg-gray-500">Textes</button>
+                <button onclick="showTab('galerie')" id="tab-galerie" class="admin-btn bg-gray-500">Galerie</button>
+            </div>
+
+            <!-- Tab: La Carte -->
+            <div id="content-carte" class="tab-content">
+                <div id="carte-editor"></div>
+            </div>
+
+            <!-- Tab: Textes -->
+            <div id="content-textes" class="tab-content hidden">
+                <div class="admin-section">
+                    <h3 class="text-xl font-bold mb-4">Sous-titre Hero</h3>
+                    <textarea id="edit-hero-subtitle" class="admin-input" rows="2"></textarea>
+                </div>
+                <div class="admin-section">
+                    <h3 class="text-xl font-bold mb-4">Textes Identité</h3>
+                    <textarea id="edit-identity-1" class="admin-input" rows="3"></textarea>
+                    <textarea id="edit-identity-2" class="admin-input" rows="3"></textarea>
+                    <textarea id="edit-identity-3" class="admin-input" rows="3"></textarea>
+                </div>
+            </div>
+
+            <!-- Tab: Galerie -->
+            <div id="content-galerie" class="tab-content hidden">
+                <div id="gallery-editor"></div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex gap-4 mt-6">
+                <button onclick="saveChanges()" class="admin-btn flex-1">💾 Enregistrer localement</button>
+                <button onclick="publishToGitHub()" class="admin-btn flex-1 bg-green-600 hover:bg-green-700">🚀 Publier sur GitHub</button>
+            </div>
+            
+            <div id="admin-status" class="mt-4 p-3 rounded hidden"></div>
+        </div>
+    </div>
+
     <!-- JavaScript -->
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const closeIcon = document.getElementById('close-icon');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            menuIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when clicking a link
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-            });
-        });
-
-        // Scroll Animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+        // ========== DEFAULT DATA ==========
+        const DEFAULT_DATA = {
+            carte: {
+                entrees: [
+                    { name: 'Foie Gras Maison', price: '16,90€' },
+                    { name: 'Planche Charcuterie', price: '12,50€' },
+                    { name: 'Salade de Chèvre Chaud', price: '11,90€' },
+                    { name: 'Tartare de Saumon', price: '13,50€' },
+                    { name: 'Carpaccio de Bœuf', price: '12,90€' }
+                ],
+                plats: [
+                    { name: 'Magret de Canard', price: '21,00€' },
+                    { name: 'Dorade Grillée', price: '19,50€' },
+                    { name: 'Entrecôte Frites', price: '19,00€' },
+                    { name: 'Pavé de Saumon', price: '18,50€' },
+                    { name: 'Confit de Canard', price: '20,00€' },
+                    { name: 'Tartare de Bœuf', price: '15,90€' }
+                ],
+                burgers: [
+                    { name: 'Le Rossini', price: '17,90€', desc: 'Foie gras, confit d\'oignons' },
+                    { name: 'Le Royal Cheese', price: '15,90€', desc: 'Double cheddar, bacon' },
+                    { name: 'Le Provençal', price: '16,50€', desc: 'Chèvre, miel, roquette' },
+                    { name: 'Le Classic', price: '14,50€', desc: 'Cheddar, salade, tomate' }
+                ],
+                pizzas: [
+                    { name: 'Regina', price: '13,00€', desc: 'Jambon, champignons' },
+                    { name: 'Provençale', price: '12,50€', desc: 'Légumes du soleil' },
+                    { name: 'Quatre Fromages', price: '14,00€', desc: 'Mozzarella, chèvre, bleu, emmental' },
+                    { name: 'Reine', price: '13,50€', desc: 'Jambon, olives, champignons' }
+                ],
+                desserts: [
+                    { name: 'Tiramisu Maison', price: '7,50€' },
+                    { name: 'Crème Brûlée', price: '7,00€' },
+                    { name: 'Tarte Tatin', price: '8,00€' },
+                    { name: 'Coupe Glacée', price: '6,50€' },
+                    { name: 'Fondant au Chocolat', price: '8,50€' }
+                ]
+            },
+            menus: [
+                {
+                    title: 'Menu Gourmet',
+                    price: '25,90€',
+                    items: ['Foie Gras Maison', 'Assiette du Boucher', 'Dessert du Chef', 'Café ou Thé'],
+                    note: 'Notre sélection raffinée'
+                },
+                {
+                    title: 'Menu Bistrot',
+                    price: '15,90€',
+                    items: ['Entrée au choix', 'Plat du Jour', 'Dessert maison', 'Café offert'],
+                    note: 'Midi uniquement'
+                },
+                {
+                    title: 'Menu Enfant',
+                    price: '10,50€',
+                    items: ['Steak haché', 'Frites maison', 'Glace au choix', 'Sirop ou Jus'],
+                    note: 'Jusqu\'à 12 ans'
+                }
+            ],
+            gallery: [
+                { url: 'https://customer-assets.emergentagent.com/job_provence-dining/artifacts/gsyxbdua_qzmlkjdlkqzjdklmjqz.webp', label: 'Entrecôte Grillée' },
+                { url: 'https://customer-assets.emergentagent.com/job_provence-dining/artifacts/shf1k639_qlmkjzdlmkzqj.webp', label: 'Salade Mixte' },
+                { url: 'https://customer-assets.emergentagent.com/job_provence-dining/artifacts/le1ab021_qljdlkzqjdkjq.webp', label: 'Planche Charcuterie' },
+                { url: 'https://customer-assets.emergentagent.com/job_provence-dining/artifacts/bxuf54ug_dzqqqqqqqsdqs.webp', label: 'Dessert Macaron' },
+                { url: 'https://customer-assets.emergentagent.com/job_provence-dining/artifacts/hap3ch6h_dzqqqqqqqzz.webp', label: 'Pizza Jambon Cru' },
+                { url: 'https://images.unsplash.com/photo-1550547660-d9450f859349', label: 'Burgers Gourmands' },
+                { url: 'https://images.unsplash.com/photo-1600699899970-b1c9fadd8f9e', label: 'Poisson Grillé' },
+                { url: 'https://images.unsplash.com/photo-1608897013039-887f21d8c804', label: 'Pâtes Fraîches' }
+            ],
+            texts: {
+                heroSubtitle: 'Bistronomie provençale — produits frais, faits maison, au cœur d\'Arles',
+                identity1: 'Au Bistrot Arlésien, tout est préparé maison avec un savoir-faire artisanal qui respecte les traditions culinaires provençales. Nous sélectionnons chaque matin des produits frais et locaux auprès de nos producteurs partenaires.',
+                identity2: 'Installés en plein cœur d\'Arles, sur la mythique Place du Forum, nous vous accueillons dans une atmosphère chaleureuse et authentique où se mélangent tradition et modernité.',
+                identity3: 'Notre équipe passionnée met un point d\'honneur à vous offrir une expérience gastronomique unique, où chaque plat raconte l\'histoire de notre belle Provence.'
+            }
         };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+        // ========== LOAD DATA ==========
+        function loadData() {
+            const saved = localStorage.getItem('bistrotData');
+            return saved ? JSON.parse(saved) : DEFAULT_DATA;
+        }
 
-        // Observe all fade-in-up elements
+        function saveData(data) {
+            localStorage.setItem('bistrotData', JSON.stringify(data));
+        }
+
+        // ========== RENDER FUNCTIONS ==========
+        function renderCarte() {
+            const data = loadData();
+            const container = document.getElementById('carte-container');
+            
+            container.innerHTML = `
+                <div class="space-y-12">
+                    <div class="fade-in-up">
+                        <h3 class="font-cursive text-4xl mb-6 text-terracotta text-center md:text-left">Entrées</h3>
+                        <div class="space-y-3">
+                            ${data.carte.entrees.map(item => `
+                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
+                                    <span class="text-lg">${item.name}</span>
+                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
+                                    <span class="font-semibold text-lg">${item.price}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="fade-in-up">
+                        <h3 class="font-cursive text-4xl mb-6 text-terracotta text-center md:text-left">Burgers</h3>
+                        <div class="space-y-3">
+                            ${data.carte.burgers.map(item => `
+                                <div class="text-cream pb-2 border-b border-cream/20">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-lg font-semibold">${item.name}</span>
+                                        <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
+                                        <span class="font-semibold text-lg">${item.price}</span>
+                                    </div>
+                                    ${item.desc ? `<p class="text-sm text-cream/70 mt-1 italic">${item.desc}</p>` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="fade-in-up">
+                        <h3 class="font-cursive text-4xl mb-6 text-terracotta text-center md:text-left">Desserts</h3>
+                        <div class="space-y-3">
+                            ${data.carte.desserts.map(item => `
+                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
+                                    <span class="text-lg">${item.name}</span>
+                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
+                                    <span class="font-semibold text-lg">${item.price}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-12">
+                    <div class="fade-in-up">
+                        <h3 class="font-cursive text-4xl mb-6 text-terracotta text-center md:text-left">Plats</h3>
+                        <div class="space-y-3">
+                            ${data.carte.plats.map(item => `
+                                <div class="flex items-center justify-between text-cream border-b border-cream/20 pb-2">
+                                    <span class="text-lg">${item.name}</span>
+                                    <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
+                                    <span class="font-semibold text-lg">${item.price}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="fade-in-up">
+                        <h3 class="font-cursive text-4xl mb-6 text-terracotta text-center md:text-left">Pizzas</h3>
+                        <div class="space-y-3">
+                            ${data.carte.pizzas.map(item => `
+                                <div class="text-cream pb-2 border-b border-cream/20">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-lg font-semibold">${item.name}</span>
+                                        <span class="flex-1 mx-3 border-b border-dotted border-cream/30"></span>
+                                        <span class="font-semibold text-lg">${item.price}</span>
+                                    </div>
+                                    ${item.desc ? `<p class="text-sm text-cream/70 mt-1 italic">${item.desc}</p>` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderGallery() {
+            const data = loadData();
+            const container = document.getElementById('gallery-container');
+            
+            container.innerHTML = data.gallery.map(item => `
+                <div class="aspect-square rounded-lg overflow-hidden hover:scale-105 transition-transform shadow-md">
+                    <img src="${item.url}" alt="${item.label}" class="w-full h-full object-cover">
+                </div>
+            `).join('');
+        }
+
+        function renderMenus() {
+            const data = loadData();
+            const container = document.getElementById('menus-container');
+            const icons = [
+                '<svg class="w-16 h-16 text-terracotta mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"></path><line x1="6" y1="17" x2="18" y2="17"></line></svg>',
+                '<svg class="w-16 h-16 text-terracotta mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>',
+                '<svg class="w-16 h-16 text-terracotta mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 11h.01"></path><path d="M11 15h.01"></path><path d="M16 16h.01"></path><path d="m2 16 20 6-6-20A20 20 0 0 0 2 16"></path><path d="M5.71 17.11a17.04 17.04 0 0 1 11.4-11.4"></path></svg>'
+            ];
+            
+            container.innerHTML = data.menus.map((menu, index) => `
+                <div class="fade-in-up bg-white border-2 border-terracotta/20 rounded-lg p-8 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300" style="background-image: linear-gradient(to bottom, rgba(250, 246, 242, 0.5), rgba(255, 255, 255, 1));">
+                    <div class="text-center">
+                        ${icons[index]}
+                        <h3 class="font-serif text-2xl mb-4 text-terracotta">${menu.title}</h3>
+                        <div class="text-4xl font-bold mb-6 text-chocolate">${menu.price}</div>
+                    </div>
+                    <div class="border-t-2 border-b-2 border-terracotta/20 py-4 mb-4">
+                        <ul class="space-y-3 text-gray-700">
+                            ${menu.items.map(item => `<li class="flex items-center"><span class="w-2 h-2 bg-terracotta rounded-full mr-3"></span>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <p class="text-sm text-center text-terracotta font-semibold italic">${menu.note}</p>
+                </div>
+            `).join('');
+        }
+
+        function applyTexts() {
+            const data = loadData();
+            document.getElementById('hero-subtitle').textContent = data.texts.heroSubtitle;
+            document.getElementById('identity-text-1').textContent = data.texts.identity1;
+            document.getElementById('identity-text-2').textContent = data.texts.identity2;
+            document.getElementById('identity-text-3').textContent = data.texts.identity3;
+        }
+
+        // ========== ADMIN FUNCTIONS ==========
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        function adminLogin() {
+            const password = document.getElementById('admin-password').value;
+            if (password === '13200bistrotarlésiensite') {
+                closeModal('login-modal');
+                openAdminPanel();
+            } else {
+                alert('❌ Code incorrect');
+            }
+        }
+
+        function openAdminPanel() {
+            // Check if GitHub config exists
+            const githubConfig = localStorage.getItem('githubConfig');
+            if (!githubConfig) {
+                document.getElementById('github-config').classList.remove('hidden');
+            }
+            
+            loadAdminEditors();
+            document.getElementById('admin-panel').classList.add('active');
+        }
+
+        function loadAdminEditors() {
+            const data = loadData();
+            
+            // Load carte editor
+            const carteEditor = document.getElementById('carte-editor');
+            carteEditor.innerHTML = Object.keys(data.carte).map(category => `
+                <div class="admin-section">
+                    <h3 class="text-xl font-bold mb-4 capitalize">${category}</h3>
+                    <div id="category-${category}">
+                        ${data.carte[category].map((item, idx) => `
+                            <div class="item-editor">
+                                <input 
+                                    type="text" 
+                                    class="admin-input" 
+                                    value="${item.name}" 
+                                    data-category="${category}" 
+                                    data-index="${idx}" 
+                                    data-field="name"
+                                    placeholder="Nom du plat"
+                                />
+                                <input 
+                                    type="text" 
+                                    class="admin-input" 
+                                    value="${item.price}" 
+                                    data-category="${category}" 
+                                    data-index="${idx}" 
+                                    data-field="price"
+                                    placeholder="Prix"
+                                />
+                                ${item.desc !== undefined ? `
+                                    <input 
+                                        type="text" 
+                                        class="admin-input" 
+                                        value="${item.desc || ''}" 
+                                        data-category="${category}" 
+                                        data-index="${idx}" 
+                                        data-field="desc"
+                                        placeholder="Description (optionnel)"
+                                    />
+                                ` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+            
+            // Load texts
+            document.getElementById('edit-hero-subtitle').value = data.texts.heroSubtitle;
+            document.getElementById('edit-identity-1').value = data.texts.identity1;
+            document.getElementById('edit-identity-2').value = data.texts.identity2;
+            document.getElementById('edit-identity-3').value = data.texts.identity3;
+            
+            // Load gallery editor
+            const galleryEditor = document.getElementById('gallery-editor');
+            galleryEditor.innerHTML = data.gallery.map((item, idx) => `
+                <div class="item-editor">
+                    <label class="block text-sm font-semibold mb-1">Image ${idx + 1}</label>
+                    <input 
+                        type="text" 
+                        class="admin-input" 
+                        value="${item.url}" 
+                        data-gallery-index="${idx}" 
+                        data-field="url"
+                        placeholder="URL de l'image"
+                    />
+                    <input 
+                        type="text" 
+                        class="admin-input" 
+                        value="${item.label}" 
+                        data-gallery-index="${idx}" 
+                        data-field="label"
+                        placeholder="Label"
+                    />
+                </div>
+            `).join('');
+        }
+
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.querySelectorAll('[id^="tab-"]').forEach(btn => btn.classList.remove('bg-terracotta'));
+            document.querySelectorAll('[id^="tab-"]').forEach(btn => btn.classList.add('bg-gray-500'));
+            
+            // Show selected tab
+            document.getElementById('content-' + tabName).classList.remove('hidden');
+            document.getElementById('tab-' + tabName).classList.remove('bg-gray-500');
+            document.getElementById('tab-' + tabName).classList.add('bg-terracotta');
+        }
+
+        function saveChanges() {
+            const data = loadData();
+            
+            // Save carte
+            document.querySelectorAll('[data-category]').forEach(input => {
+                const category = input.dataset.category;
+                const index = parseInt(input.dataset.index);
+                const field = input.dataset.field;
+                data.carte[category][index][field] = input.value;
+            });
+            
+            // Save texts
+            data.texts.heroSubtitle = document.getElementById('edit-hero-subtitle').value;
+            data.texts.identity1 = document.getElementById('edit-identity-1').value;
+            data.texts.identity2 = document.getElementById('edit-identity-2').value;
+            data.texts.identity3 = document.getElementById('edit-identity-3').value;
+            
+            // Save gallery
+            document.querySelectorAll('[data-gallery-index]').forEach(input => {
+                const index = parseInt(input.dataset.galleryIndex);
+                const field = input.dataset.field;
+                data.gallery[index][field] = input.value;
+            });
+            
+            saveData(data);
+            
+            // Refresh page
+            renderCarte();
+            renderGallery();
+            renderMenus();
+            applyTexts();
+            
+            showStatus('✅ Modifications enregistrées localement !', 'success');
+        }
+
+        function saveGitHubConfig() {
+            const config = {
+                username: document.getElementById('github-username').value,
+                repo: document.getElementById('github-repo').value,
+                token: document.getElementById('github-token').value
+            };
+            
+            if (!config.username || !config.repo || !config.token) {
+                showStatus('❌ Veuillez remplir tous les champs', 'error');
+                return;
+            }
+            
+            localStorage.setItem('githubConfig', JSON.stringify(config));
+            document.getElementById('github-config').classList.add('hidden');
+            showStatus('✅ Configuration GitHub sauvegardée !', 'success');
+        }
+
+        async function publishToGitHub() {
+            const config = JSON.parse(localStorage.getItem('githubConfig'));
+            
+            if (!config) {
+                document.getElementById('github-config').classList.remove('hidden');
+                showStatus('⚠️ Veuillez d\'abord configurer GitHub', 'warning');
+                return;
+            }
+            
+            showStatus('🚀 Publication en cours...', 'info');
+            
+            try {
+                // Get current file SHA
+                const getResponse = await fetch(`https://api.github.com/repos/${config.username}/${config.repo}/contents/index.html`, {
+                    headers: {
+                        'Authorization': `token ${config.token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                let sha = null;
+                if (getResponse.ok) {
+                    const fileData = await getResponse.json();
+                    sha = fileData.sha;
+                }
+                
+                // Get current HTML content
+                const htmlContent = generateUpdatedHTML();
+                const encodedContent = btoa(unescape(encodeURIComponent(htmlContent)));
+                
+                // Update file on GitHub
+                const updateResponse = await fetch(`https://api.github.com/repos/${config.username}/${config.repo}/contents/index.html`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${config.token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: 'Mise à jour via interface admin',
+                        content: encodedContent,
+                        sha: sha
+                    })
+                });
+                
+                if (updateResponse.ok) {
+                    showStatus('✅ Publié sur GitHub ! Le site sera mis à jour dans quelques minutes.', 'success');
+                } else {
+                    const error = await updateResponse.json();
+                    showStatus(`❌ Erreur : ${error.message}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ Erreur de connexion : ${error.message}`, 'error');
+            }
+        }
+
+        function generateUpdatedHTML() {
+            // Get the current HTML document
+            const html = document.documentElement.outerHTML;
+            return html;
+        }
+
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('admin-status');
+            statusDiv.textContent = message;
+            statusDiv.classList.remove('hidden', 'bg-green-100', 'bg-red-100', 'bg-blue-100', 'bg-yellow-100');
+            
+            if (type === 'success') statusDiv.classList.add('bg-green-100');
+            else if (type === 'error') statusDiv.classList.add('bg-red-100');
+            else if (type === 'info') statusDiv.classList.add('bg-blue-100');
+            else if (type === 'warning') statusDiv.classList.add('bg-yellow-100');
+            
+            setTimeout(() => statusDiv.classList.add('hidden'), 5000);
+        }
+
+        // ========== INIT ==========
         document.addEventListener('DOMContentLoaded', () => {
+            renderCarte();
+            renderGallery();
+            renderMenus();
+            applyTexts();
+            
+            // Mobile menu
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                });
+            });
+
+            // Scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
             const fadeElements = document.querySelectorAll('.fade-in-up');
             fadeElements.forEach(el => observer.observe(el));
+            
+            // Copyright trigger
+            document.getElementById('copyright-trigger').addEventListener('click', () => {
+                document.getElementById('login-modal').classList.add('active');
+            });
+            
+            // Enter key for login
+            document.getElementById('admin-password').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') adminLogin();
+            });
         });
     </script>
 </body>
